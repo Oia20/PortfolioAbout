@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>About Jacob Dement</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   </head>
   
 <section>
@@ -20,42 +21,47 @@
                     <div class="about-container">
                         <div class="about-me-section">
                             <div class="about-text">
-                                Hi
+                                <p>Hi, I'm Jacob Dement!</p>
                             </div>
                           
                             <div class="about-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                Ut, odit voluptatem fugiat voluptas dolores eveniet voluptatibus perferendis
-                                quasi asperiores voluptatum ducimus tenetur nam sint quos?
+                                <p>I'm a software developer, but this page isn't about my work, <a href="https://oia20.github.io/personalPortfolio/">click here</a> 
+                                    for my work and projects page :)</p>
                             </div>
                             <div class="about-text">
-                                voluptatibus perferendis
-                                quasi asperiores voluptatum ducimus tenetur nam sint quos?
+                                <p>I'm from West Monroe, LA, a small city in Louisiana, that almost certainly made you think "Where is that?!"
+                                    I have a wide variety of interests besides my love for programming, to list a few, Acrylic Painting, 
+                                    Chess, Psychology, Golf, if you got here through my <a href="https://oia20.github.io/personalPortfolio/">3D Portfolio</a>, you can see I enjoy video games (My portfolio's style takes
+                                    heavy inspiration from <a href="https://oldschool.runescape.com/">Old School RuneScape</a>)!
+                                </p>
+                            </div>
+                            <div class="about-text">
+                                <p>Possibly most importantly is my love for people! There aren't many things I enjoy more than
+                                    spending time with my partner, family & friends.
+                                </p>
                             </div>
                         </div>
                         <div class="img-section">
-                          <img src="https://avatars.githubusercontent.com/u/77773407?v=4">
+                          <img src="unnamed.jpg">
                         </div>
                     </div>                      
                 </div>
                 <div class="experince-header"><span class="experince-header-set">Contact</span></div>
                 <div class="contact-container">
                     <div class="contact-form">
-                        <form id="form">
+                        <form id="gform" class="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSeH5-6bWKq8bP0QtR1rV-IejcKNxw5BKeiTctjhkrpDwkVzXQ/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
                             <div class="wrapper">
-                                <input type="text" placeholder="Your name"/>
-                                <div class="gradient-bg"></div>
+                                <input name=“entry.322383414” id=“entry.322383414” type="text" placeholder="Your name"/>
                             </div>
                             <div class="wrapper">
-                                <input type="email" placeholder="Email address" />
-                                <div class="gradient-bg"></div>
+                                <input name=“entry.1182914342” id=“entry.1182914342” type="email" placeholder="Email address" />
                             </div>
                             <div class="wrapper wrapper-big">
-                                <textarea placeholder="Message"></textarea>
-                                <div class="gradient-bg"></div>
+                                <textarea name=“entry.1158720977” id=“entry.1158720977” placeholder="Message"></textarea>
                             </div>
-                            <button>Send</button>
+                            <button type="submit" value="Submit">Send</button>
                         </form>
+                        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
                     </div>
                     <div class="contact-info">
                         <h2>Contact Information</h2>
@@ -69,4 +75,12 @@
         </div>
     </div>
 </section>
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">var submitted=false;</script>
+<script type="text/javascript">
+$('#gform').on('submit', function(e) {
+  $('#gform *').fadeOut(2000);
+  $('#gform').prepend('Your submission has been processed...');
+  });
+</script>
 </html>
