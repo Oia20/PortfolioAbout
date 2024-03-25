@@ -49,7 +49,7 @@
                 <div class="experince-header"><span class="experince-header-set">Contact</span></div>
                 <div class="contact-container">
                     <div class="contact-form">
-                        <form id="gform" class="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSeH5-6bWKq8bP0QtR1rV-IejcKNxw5BKeiTctjhkrpDwkVzXQ/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
+                        <!-- <form id="gform" class="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSeH5-6bWKq8bP0QtR1rV-IejcKNxw5BKeiTctjhkrpDwkVzXQ/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
                             <div class="wrapper">
                                 <input name=“entry.322383414” id=“entry.322383414” type="text" placeholder="Your name"/>
                             </div>
@@ -61,7 +61,21 @@
                             </div>
                             <button type="submit" value="Submit">Send</button>
                         </form>
-                        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+                        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe> -->
+                        <form name="gform" id="form" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSeH5-6bWKq8bP0QtR1rV-IejcKNxw5BKeiTctjhkrpDwkVzXQ/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
+                            <div class="wrapper">
+                            <input type="text" name="entry.322383414" id="entry.322383414" placeholder="Name">
+                            </div>
+                            <div class="wrapper">
+                            <input type="email" name="entry.1182914342" id="entry.1182914342" placeholder="Email">
+                            </div>
+                            <div class="wrapper">
+                                <textarea type="text" name="entry.208875454" id="entry.208875454" rows="8" placeholder="Message"></textarea>
+                            </div>
+                            <button type="submit" value="Submit">Submit</button>
+                          </form>
+                          
+                          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
                     </div>
                     <div class="contact-info">
                         <h2>Contact Information</h2>
@@ -78,9 +92,9 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">var submitted=false;</script>
 <script type="text/javascript">
-$('#gform').on('submit', function(e) {
-  $('#gform *').fadeOut(2000);
-  $('#gform').prepend('Your submission has been processed...');
+$('#form').on('submit', function(e) {
+  $('#form *').fadeOut(2000);
+  $('#form').prepend('Thanks for submitting, I will get back to you ASAP! :)');
   });
 </script>
 </html>
