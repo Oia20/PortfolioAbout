@@ -1,7 +1,33 @@
 import { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
 import { useGLTF, Edges, MeshPortalMaterial, CameraControls, Environment } from '@react-three/drei'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
+function Room() {
+    const gltf = useLoader(GLTFLoader, '/low_poly_isometric_room.glb');
+    const group = useRef();
+  
+    // Handle click event
+    const handleClick = () => {
+      bpset(false)
+    };
+  
+    return (
+      <group ref={group} onClick={handleClick}>
+        {gltf.scene && <primitive object={gltf.scene} />}
+      </group>
+    );
+  }
+  
+  function RoomUse(props) {
+    return (
+      <group>
+        <mesh scale={[.2,.2,.2]} position={[.8, 0, 0]} rotation={[0, 0, 1.57]}>
+          <Room />
+        </mesh>
+      </group>
+    );
+  }
 export default function Scene() {
     return (
   <Canvas style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} shadows camera={{ position: [-3, 0.5, 3] }}>
@@ -14,8 +40,8 @@ export default function Scene() {
         <Side rotation={[0, Math.PI, 0]} bg="lightblue" index={1}>
           <torusKnotGeometry args={[0.55, 0.2, 128, 32]} />
         </Side>
-        <Side rotation={[0, Math.PI / 2, Math.PI / 2]} bg="lightgreen" index={2}>
-          <boxGeometry args={[1.15, 1.15, 1.15]} />
+        <Side rotation={[0, Math.PI / 2, Math.PI / 2]} bg="grey" index={2}>
+          <RoomUse args={[1.15, 1.15, 1.15]} />
         </Side>
         <Side rotation={[0, Math.PI / 2, -Math.PI / 2]} bg="aquamarine" index={3}>
           <octahedronGeometry />
@@ -34,9 +60,6 @@ export default function Scene() {
 function Side({ rotation = [0, 0, 0], bg = '#f0f0f0', children, index }) {
   const mesh = useRef()
   const { nodes } = useGLTF('/aobox-transformed.glb')
-  useFrame((state, delta) => {
-    mesh.current.rotation.x = mesh.current.rotation.y += delta
-  })
   return (
     <MeshPortalMaterial attach={`material-${index}`}>
       {/** Everything in here is inside the portal and isolated from the canvas */}
