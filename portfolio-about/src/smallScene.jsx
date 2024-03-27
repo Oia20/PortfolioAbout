@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { Html, useGLTF, Plane, Text, MeshWobbleMaterial, MeshPortalMaterial, CameraControls, Billboard, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
+import { Html, useProgress, useGLTF, Plane, Text, MeshWobbleMaterial, MeshPortalMaterial, CameraControls, Billboard, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Scene() {
@@ -380,6 +380,15 @@ export default function Scene() {
     </Suspense>
     ) 
   }
+  function Loader() {
+    const { progress } = useProgress();
+    return (
+      <Html center>
+        <h1>{Math.ceil(progress)} % loaded</h1>
+      </Html>
+    );
+  }
+  
   function RsText() {
     const handleClick = () => {
       console.log("chess")
@@ -431,7 +440,7 @@ export default function Scene() {
   }
     return (
       <Canvas onClick={canvasClick} shadows style={{ background: "linear-gradient(70deg, #940B92, #864AF9, #0F0F0F)", position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} camera={{ fov: 100, zoom: 1, position: [1.2, 1.4, 1.4] }}>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
         <directionalLight />
         <ambientLight intensity={1.0}/>
         <Float floatIntensity={1} floatingRange={1.5}>
