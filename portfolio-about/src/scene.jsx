@@ -72,7 +72,7 @@ export default function Scene() {
   
     // Handle click event
     const handleClick = () => {
-      window.open("./main.html")
+      window.open("https://oia20.github.io/simpleContact/", "_Blank")
     };
   
     return (
@@ -333,7 +333,7 @@ export default function Scene() {
         <Suspense>
         <directionalLight />
         <ambientLight intensity={1.0}/>
-        <Float>
+        <Float floatIntensity={2}>
         <RoomUse />
         <ChessUse />
         <EaselUse />
