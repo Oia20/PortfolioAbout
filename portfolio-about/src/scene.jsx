@@ -10,7 +10,9 @@ export default function Scene() {
   const [art, setArt] = useState(false)
   const [books, setBooks] = useState(false)
   const [rs, setRs] = useState(false)
-  const [com, setCom] = useState(false)
+  const [start, setStart] = useState(true)
+  const [skel, setSkel] = useState(10)
+
 
 
   function Room() {
@@ -34,6 +36,63 @@ export default function Scene() {
       <group>
         <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
           <Room />
+        </mesh>
+      </group>
+    );
+  }
+
+  function Skel() {
+    const gltf = useLoader(GLTFLoader, 'skel.glb');
+    const group = useRef();
+  
+    // Handle click event
+    const handleClick = () => {
+      console.log("clicked Room")
+      setPlacement(0)
+      setSkel(10)
+    };
+  
+    return (
+      <group ref={group} onClick={handleClick}>
+        {gltf.scene && <primitive object={gltf.scene} />}
+      </group>
+    );
+  }
+  
+  function SkelUse(props) {
+    return (
+      <group>
+        <mesh rotation={[0, 1, 0]} position={[0, skel, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+          <Skel />
+          <Text color={"red"} rotation={[0,-.54,0]} position={[-.5, 1, 0.1]} fontSize={.2}>I warned you! click skeleton to return...</Text>
+
+        </mesh>
+      </group>
+    );
+  }
+  
+  function Door() {
+    const gltf = useLoader(GLTFLoader, 'door.glb');
+    const group = useRef();
+  
+    // Handle click event
+    const handleClick = () => {
+      setPlacement(5)
+      setSkel(0)
+    };
+  
+    return (
+      <group ref={group} onClick={handleClick}>
+        {gltf.scene && <primitive object={gltf.scene} />}
+      </group>
+    );
+  }
+  
+  function DoorUse(props) {
+    return (
+      <group>
+        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+          <Door />
         </mesh>
       </group>
     );
@@ -328,17 +387,40 @@ export default function Scene() {
     </Suspense>
     ) 
   }
+  const canvasClick = () => {
+    console.log("chess")
+    setStart(false)
+  };
+  function StartText() {
+    const handleClick = () => {
+      console.log("chess")
+    };
+    if (start)
     return (
-      <Canvas shadows style={{ background: "linear-gradient(70deg, #940B92, #864AF9, #0F0F0F)", position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} camera={{ position: [1.2, 1.4, 1.4] }}>
+  <Suspense>
+      <mesh onClick={handleClick}>
+        <Text color={"#ffff00"} rotation={[0,1.5,0]} position={[-.5, 1, 0.1]} fontSize={.1}>Welcome to my room!</Text>
+        <Text color={"#ffff00"} position={[.25, 1, -.5]} fontSize={.1}>You can interect with objects</Text>
+        <Text color={"#ffff00"} rotation={[0,.6,0]} position={[.2, .5, .2]} fontSize={.1}>and zoom/pan around!</Text>
+        <Text color={"red"} position={[.9, .45, -.5]} fontSize={.05}>*Don't open closet!*</Text>
+    </mesh>
+
+    </Suspense>
+    ) 
+  }
+    return (
+      <Canvas onClick={canvasClick} shadows style={{ background: "linear-gradient(70deg, #940B92, #864AF9, #0F0F0F)", position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} camera={{ zoom: 1, position: [1.2, 1.4, 1.4] }}>
         <Suspense>
         <directionalLight />
         <ambientLight intensity={1.0}/>
-        <Float floatIntensity={2}>
+        <Float floatIntensity={1} floatingRange={1.5}>
         <RoomUse />
         <ChessUse />
         <EaselUse />
         <RsUse />
+        <SkelUse />
         <ConUse />
+        <DoorUse />
         <BooksUse />
         <GolfUse />
         <ChessText />
@@ -346,6 +428,7 @@ export default function Scene() {
         <ArtText />
         <BooksText />
         <RsText />
+        <StartText />
         </Float>
         <OrbitControls maxDistance={5} minDistance={.6} enablePan={false} maxAzimuthAngle={1.7} minAzimuthAngle={-.3} maxPolarAngle={2} enableDamping enableRotate enableZoom/>
         <Stars />
