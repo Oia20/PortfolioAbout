@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { Html, useProgress, useGLTF, Plane, Text, MeshWobbleMaterial, MeshPortalMaterial, CameraControls, Billboard, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
+import { Html, useProgress, ScreenSizer, ScreenSpace, useGLTF, Plane, Center,Text, MeshWobbleMaterial, MeshPortalMaterial, CameraControls, Billboard, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Scene() {
@@ -12,7 +12,6 @@ export default function Scene() {
   const [rs, setRs] = useState(false)
   const [start, setStart] = useState(true)
   const [skel, setSkel] = useState(10)
-
 
   function Loader() {
     const { progress } = useProgress();
@@ -281,18 +280,27 @@ export default function Scene() {
     if (chess)
     return (
   <Suspense>
-    <Billboard>
-      <mesh onClick={handleClick}>
-        <Text color={"#ffff00"} position={[0, 1, 0]} fontSize={.2}>I love chess because every</Text>
-        <Text color={"#ffff00"} position={[0, .7, 0]} fontSize={.2}>match tells its own unique story. </Text>
-        <Text color={"#ffff00"} position={[0, .4, 0]} fontSize={.2}>The process of learning/improving </Text>
-        <Text color={"#ffff00"} position={[0, .1, 0]} fontSize={.2}>is so very fun to me! Similarly to </Text>
-        <Text color={"#ffff00"} position={[0, -.2, 0]} fontSize={.2}>coding, there is always more to be learned</Text>
-        <Text color={"#ffff00"} position={[0, -.5, 0]} fontSize={.2}>about chess.</Text>
-        <Text color={"#ffff00"} position={[0, -.8, 0]} fontSize={.15}>*Click any text to return to my room*</Text>
-    </mesh>
-    </Billboard>
+    <ScreenSpace depth={1}  >
+    <Html
+        center
 
+      >
+        <div
+        onClick={handleClick}
+
+          style={{
+            color: 'whitesmoke',
+            width: "80vw",
+            fontSize:13,
+          }}
+        >
+          <h1>I love chess because every match tells its own unique story. The process of learning/improving is so very fun to me! Similarly to coding, there is always more to be learned
+          about chess.
+          </h1>
+          <h1>*Click any text to return to my room*</h1>
+        </div>
+      </Html>
+    </ScreenSpace>
     </Suspense>
     ) 
   }
@@ -305,20 +313,28 @@ export default function Scene() {
     };
     if (golf)
     return (
-  <Suspense>
-    <Billboard>
-      <mesh onClick={handleClick}>
-        <Text color={"#ffff00"} position={[0, 1, 0]} fontSize={.2}>Golf has become an excellent</Text>
-        <Text color={"#ffff00"} position={[0, .7, 0]} fontSize={.2}>way to spend quality time with </Text>
-        <Text color={"#ffff00"} position={[0, .4, 0]} fontSize={.2}>my brother and Dad. Before</Text>
-        <Text color={"#ffff00"} position={[0, .1, 0]} fontSize={.2}>I played this sport I had assumed it would </Text>
-        <Text color={"#ffff00"} position={[0, -.2, 0]} fontSize={.2}>be easy "just hit the ball with the </Text>
-        <Text color={"#ffff00"} position={[0, -.5, 0]} fontSize={.2}>stick!" Boy was I wrong haha.</Text>
-        <Text color={"#ffff00"} position={[0, -.8, 0]} fontSize={.15}>*Click any text to return to my room*</Text>
-    </mesh>
-    </Billboard>
-
-    </Suspense>
+            <Suspense>
+            <ScreenSpace depth={1}  >
+            <Html
+                center
+          
+              >
+                <div
+                onClick={handleClick}
+          
+                  style={{
+                    color: 'whitesmoke',
+                    width: "80vw",
+                    fontSize:13,
+                  }}
+                >
+                  <h1>Golf has become an excellent way to spend quality time with my brother and Dad. Before I played this sport I had assumed it would be easy "just hit the ball with the stick!" I thought... Boy was I wrong haha.
+                  </h1>
+                  <h1>*Click any text to return to my room*</h1>
+                </div>
+              </Html>
+            </ScreenSpace>
+            </Suspense>
     ) 
   }
 
@@ -330,20 +346,28 @@ export default function Scene() {
     };
     if (art)
     return (
-  <Suspense>
-    <Billboard>
-      <mesh onClick={handleClick}>
-        <Text color={"#ffff00"} position={[0, 1, 0]} fontSize={.2}>I love to make, view, and study</Text>
-        <Text color={"#ffff00"} position={[0, .7, 0]} fontSize={.2}>art. The main medium I use is</Text>
-        <Text color={"#ffff00"} position={[0, .4, 0]} fontSize={.2}>Acrylics. My favorite artist</Text>
-        <Text color={"#ffff00"} position={[0, .1, 0]} fontSize={.2}>(besides my partner ;p) is </Text>
-        <Text color={"#ffff00"} position={[0, -.2, 0]} fontSize={.2}>Van Gogh, theres something about </Text>
-        <Text color={"#ffff00"} position={[0, -.5, 0]} fontSize={.2}>his style that I just love!</Text>
-        <Text color={"#ffff00"} position={[0, -.8, 0]} fontSize={.15}>*Click any text to return to my room*</Text>
-    </mesh>
-    </Billboard>
-
-    </Suspense>
+        <Suspense>
+        <ScreenSpace depth={1}  >
+        <Html
+            center
+      
+          >
+            <div
+            onClick={handleClick}
+      
+              style={{
+                color: 'whitesmoke',
+                width: "80vw",
+                fontSize:13,
+              }}
+            >
+              <h1>I love to make, view, and study art. The main medium I use is Acrylics. My favorite artist (Besides my parter :p) is Van Gogh, theres something about his style that I just love!
+              </h1>
+              <h1>*Click any text to return to my room*</h1>
+            </div>
+          </Html>
+        </ScreenSpace>
+        </Suspense>
     ) 
   }
 
@@ -355,19 +379,27 @@ export default function Scene() {
     };
     if (books)
     return (
-  <Suspense>
-    <Billboard>
-      <mesh onClick={handleClick}>
-        <Text color={"#ffff00"} position={[0, 1, 0]} fontSize={.2}>"The more that you read, the more </Text>
-        <Text color={"#ffff00"} position={[0, .7, 0]} fontSize={.2}>things you will know. The more</Text>
-        <Text color={"#ffff00"} position={[0, .4, 0]} fontSize={.2}>that you learn, the more places</Text>
-        <Text color={"#ffff00"} position={[0, .1, 0]} fontSize={.2}>you'll go." - Dr. Seuss </Text>
-        <Text color={"#ffff00"} position={[0, -.2, 0]} fontSize={.2}>I don't have a favorite genre,</Text>
-        <Text color={"#ffff00"} position={[0, -.5, 0]} fontSize={.2}>I love all books!</Text>
-        <Text color={"#ffff00"} position={[0, -.8, 0]} fontSize={.15}>*Click any text to return to my room*</Text>
-    </mesh>
-    </Billboard>
-
+    <Suspense>
+    <ScreenSpace depth={1}  >
+    <Html
+        center
+  
+      >
+        <div
+        onClick={handleClick}
+  
+          style={{
+            color: 'whitesmoke',
+            width: "80vw",
+            fontSize:13,
+          }}
+        >
+          <h1>"The more that you read, the more things you will know. The more that you learn, the more places you'll go." - Dr. Seuss I don't have a favorite genre, I love all books!
+          </h1>
+          <h1>*Click any text to return to my room*</h1>
+        </div>
+      </Html>
+    </ScreenSpace>
     </Suspense>
     ) 
   }
@@ -377,24 +409,33 @@ export default function Scene() {
       setRs(false)
       setPlacement(0)
     };
-    if (rs)
-    return (
-  <Suspense>
-    <Billboard>
-      <mesh onClick={handleClick}>
-        <Text color={"#ffff00"} position={[0, 1, 0]} fontSize={.2}>I've played video games since</Text>
-        <Text color={"#ffff00"} position={[0, .7, 0]} fontSize={.2}>I was a little boy. The landing</Text>
-        <Text color={"#ffff00"} position={[0, .4, 0]} fontSize={.2}>page that you got here through</Text>
-        <Text color={"#ffff00"} position={[0, .1, 0]} fontSize={.2}>is a reference to one of my</Text>
-        <Text color={"#ffff00"} position={[0, -.2, 0]} fontSize={.2}>all time favorites! Old School</Text>
-        <Text color={"#ffff00"} position={[0, -.5, 0]} fontSize={.2}>RuneScape, wonderful nostalgia!</Text>
-        <Text color={"#ffff00"} position={[0, -.8, 0]} fontSize={.15}>*Click any text to return to my room*</Text>
-    </mesh>
-    </Billboard>
+  if (rs)
+  return (
+<Suspense>
+  <ScreenSpace depth={1}  >
+  <Html
+      center
 
-    </Suspense>
-    ) 
-  }
+    >
+      <div
+      onClick={handleClick}
+
+        style={{
+          color: 'whitesmoke',
+          width: "80vw",
+          fontSize:13,
+        }}
+      >
+        <h1>I've played video games since I was a little boy. The image on the computers screen in the room is a 
+          reference to one of my all time favorites! Old School RuneScape, wonderful nostalgia!
+        </h1>
+        <h1>*Click any text to return to my room*</h1>
+      </div>
+    </Html>
+  </ScreenSpace>
+  </Suspense>
+  ) 
+}
   const canvasClick = () => {
     console.log("chess")
     setStart(false)
@@ -407,10 +448,7 @@ export default function Scene() {
     return (
   <Suspense>
       <mesh onClick={handleClick}>
-        <Text color={"#ffff00"} rotation={[0,1.5,0]} position={[-.5, 1, 0.1]} fontSize={.1}>Welcome to my room!</Text>
-        <Text color={"#ffff00"} position={[.25, 1, -.5]} fontSize={.1}>You can interect with objects</Text>
         <Text color={"#ffff00"} rotation={[0,.6,0]} position={[.2, .5, .2]} fontSize={.1}>and zoom/pan around!</Text>
-        <Text color={"red"} position={[.9, .45, -.5]} fontSize={.05}>*Don't open closet!*</Text>
     </mesh>
 
     </Suspense>
@@ -427,17 +465,20 @@ export default function Scene() {
         <EaselUse />
         <RsUse />
         <SkelUse />
+        <Text color={"#ffff00"} rotation={[0,1.5,0]} position={[-.5,placement + 1, 0.1]} fontSize={.1}>Welcome to my room!</Text>
+        <Text color={"#ffff00"} position={[.25,placement + 1, -.5]} fontSize={.1}>You can interect with objects</Text>
+        <Text color={"red"} position={[.9, placement + .45, -.5]} fontSize={.05}>*Don't open closet!*</Text>
         <ConUse />
         <DoorUse />
         <BooksUse />
         <GolfUse />
+        <StartText />
+        </Float>
         <ChessText />
         <GolfText />
         <ArtText />
         <BooksText />
         <RsText />
-        <StartText />
-        </Float>
         <OrbitControls maxDistance={5} minDistance={.6} enablePan={false} maxAzimuthAngle={1.7} minAzimuthAngle={-.3} maxPolarAngle={2} enableDamping enableRotate enableZoom/>
         <Stars />
         </Suspense>
