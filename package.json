@@ -1,9 +1,11 @@
 {
   "dependencies": {
+    "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.102.6",
     "jquery": "^3.7.1",
     "leva": "^0.9.35",
-    "react-media": "^1.10.0"
+    "react-media": "^1.10.0",
+    "react-spring": "^9.7.3"
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"
