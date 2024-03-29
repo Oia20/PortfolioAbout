@@ -64,7 +64,7 @@ export default function Scene() {
       <group>
         <mesh rotation={[0, 1, 0]} position={[0, skel, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
           <Skel />
-          <Text color={"red"} rotation={[0,-.54,0]} position={[-.5, 1, 0.1]} fontSize={.2}>I warned you! click skeleton to return...</Text>
+          <Text color={"red"} rotation={[0,-.54,0]} position={[-.5, 1, 0.1]} fontSize={.2}>Shoot you found my skeleton... click him to return...</Text>
 
         </mesh>
       </group>
