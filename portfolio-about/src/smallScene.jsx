@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { Html, useProgress, ScreenSpace, useGLTF, Plane, Text, MeshWobbleMaterial, MeshPortalMaterial, CameraControls, Billboard, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
+import { Html, useProgress, ScreenSpace, useGLTF, Sparkles, Plane, Text, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Scene() {
@@ -492,6 +492,8 @@ export default function Scene() {
         <BooksText />
         <RsText />
         <StartText />
+        <Sparkles scale={7}/>
+
         <OrbitControls maxDistance={5} minDistance={.6} enablePan={false} maxAzimuthAngle={1.7} minAzimuthAngle={-.3} maxPolarAngle={2} enableDamping enableRotate enableZoom/>
         <Stars />
         </Suspense>

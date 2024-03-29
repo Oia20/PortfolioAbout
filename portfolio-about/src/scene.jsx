@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { Html, useProgress, ScreenSizer, ScreenSpace, useGLTF, Plane, Center,Text, MeshWobbleMaterial, MeshPortalMaterial, CameraControls, Billboard, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
+import { Html, useProgress, ScreenSpace, Sparkles,Text, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Scene() {
@@ -71,7 +71,7 @@ export default function Scene() {
       <group>
         <mesh rotation={[0, 1, 0]} position={[0, skel, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
           <Skel />
-          <Text color={"red"} rotation={[0,-.54,0]} position={[-.5, 1, 0.1]} fontSize={.2}>I warned you! click skeleton to return...</Text>
+          <Text color={"red"} rotation={[0,-.54,0]} position={[-.5, 1, 0.1]} fontSize={.2}>Shoot you found my skeleton... click him to return...</Text>
 
         </mesh>
       </group>
@@ -467,7 +467,7 @@ export default function Scene() {
         <SkelUse />
         <Text color={"#ffff00"} rotation={[0,1.5,0]} position={[-.5,placement + 1, 0.1]} fontSize={.1}>Welcome to my room!</Text>
         <Text color={"#ffff00"} position={[.25,placement + 1, -.5]} fontSize={.1}>You can interect with objects</Text>
-        <Text color={"red"} position={[.9, placement + .45, -.5]} fontSize={.05}>*Don't open closet!*</Text>
+        <Text color={"red"} position={[.45, placement + .6, -.5]} fontSize={.05}>*Don't open closet!*</Text>
         <ConUse />
         <DoorUse />
         <BooksUse />
@@ -479,6 +479,7 @@ export default function Scene() {
         <ArtText />
         <BooksText />
         <RsText />
+        <Sparkles scale={7}/>
         <OrbitControls maxDistance={5} minDistance={.6} enablePan={false} maxAzimuthAngle={1.7} minAzimuthAngle={-.3} maxPolarAngle={2} enableDamping enableRotate enableZoom/>
         <Stars />
         </Suspense>
