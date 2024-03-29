@@ -1,0 +1,11 @@
+
+.back {
+    width : 20vh;
+    height: 10vh;
+    background: linear-gradient(70deg, #940B92, #864AF9, #0F0F0F);
+    position: absolute;
+    border-radius: 20px;
+    border:#0F0F0F solid 2px;
+    left:-20vh;
+    top: 10vh;
+}

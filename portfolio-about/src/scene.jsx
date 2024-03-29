@@ -1,6 +1,6 @@
-import { Suspense, useRef, useState } from 'react'
-import { Canvas, useFrame, useLoader,  } from '@react-three/fiber'
-import { Html, useProgress, ScreenSpace, Sparkles,Text, OrbitControls, Stars, Float, Text3D} from '@react-three/drei'
+import { Suspense, useRef, useState, React } from 'react'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import { Html, useProgress, ScreenSpace, Sparkles,Text, OrbitControls, Stars, Float, Text3D, Billboard, Plane } from '@react-three/drei'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Scene() {
@@ -78,6 +78,34 @@ export default function Scene() {
     );
   }
   
+  function Water() {
+    const gltf = useLoader(GLTFLoader, 'fullWater.glb');
+    const group = useRef();
+  
+    // Handle click event
+    const handleClick = () => {
+      window.open("https://oia20.github.io/personalPortfolio/", "_blank")
+    };
+  
+    return (
+      <group ref={group} onClick={handleClick}>
+        {gltf.scene && <primitive object={gltf.scene} />}
+      </group>
+    );
+  }
+  
+  function WaterUse(props) {
+    return (
+      <group>
+        <mesh rotation={[0, 0, 0]} position={[0, 0,-50 ]} castShadow receiveShadow scale={[.2,.2,.2]}>
+          <Water />
+          <Text color={"#ffff00"} position={[0, 0,10 ]} fontSize={5}>Click water to return to landing page!</Text>
+
+        </mesh>
+      </group>
+    );
+  }
+
   function Door() {
     const gltf = useLoader(GLTFLoader, 'door.glb');
     const group = useRef();
@@ -455,7 +483,7 @@ export default function Scene() {
     ) 
   }
     return (
-      <Canvas onClick={canvasClick} shadows style={{ background: "linear-gradient(70deg, #940B92, #864AF9, #0F0F0F)", position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} camera={{ zoom: 1, position: [1.2, 1.4, 1.4] }}>
+      <Canvas onClick={canvasClick} shadows style={{ background: "linear-gradient(70deg, #201658, #1597E5, #201658)", position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} camera={{ zoom: 1, position: [1.2, 1.4, 1.4] }}>
         <Suspense fallback={<Loader />}>
         <directionalLight />
         <ambientLight intensity={1.0}/>
@@ -467,19 +495,21 @@ export default function Scene() {
         <SkelUse />
         <Text color={"#ffff00"} rotation={[0,1.5,0]} position={[-.5,placement + 1, 0.1]} fontSize={.1}>Welcome to my room!</Text>
         <Text color={"#ffff00"} position={[.25,placement + 1, -.5]} fontSize={.1}>You can interect with objects</Text>
-        <Text color={"red"} position={[.45, placement + .6, -.5]} fontSize={.05}>*Don't open closet!*</Text>
+        <Text color={"#ffff00"} position={[.25,placement + .85, -.5]} fontSize={.1}>to learn about me :)</Text>
+        <Text color={"red"} position={[.45, placement + .65, -.5]} fontSize={.05}>*Don't open closet!*</Text>
         <ConUse />
         <DoorUse />
         <BooksUse />
         <GolfUse />
         <StartText />
         </Float>
+        <WaterUse />
         <ChessText />
         <GolfText />
         <ArtText />
         <BooksText />
         <RsText />
-        <Sparkles scale={7}/>
+        <Sparkles scale={5} color={"orange"} count={150}/>
         <OrbitControls maxDistance={5} minDistance={.6} enablePan={false} maxAzimuthAngle={1.7} minAzimuthAngle={-.3} maxPolarAngle={2} enableDamping enableRotate enableZoom/>
         <Stars />
         </Suspense>
