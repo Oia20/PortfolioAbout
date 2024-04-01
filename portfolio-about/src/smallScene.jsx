@@ -439,7 +439,32 @@ export default function Scene() {
       </Html>
     );
   }
+  function Chair() {
+    const gltf = useLoader(GLTFLoader, 'chair.glb');
+    const group = useRef();
   
+    // Handle click event
+    const handleClick = () => {
+      window.open("https://oia20.github.io/Projects/", "_blank")
+    };
+  
+    return (
+      <group ref={group} onClick={handleClick}>
+        {gltf.scene && <primitive object={gltf.scene} />}
+      </group>
+    );
+  }
+  
+  function ChairUse(props) {
+    return (
+      <group>
+        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+          <Chair />
+        </mesh>
+      </group>
+    );
+  }
+
   function RsText() {
     const handleClick = () => {
       console.log("chess")
@@ -502,10 +527,12 @@ export default function Scene() {
         <ChessUse />
         <EaselUse />
         <RsUse />
+        <ChairUse />
         <SkelUse />
         <ConUse />
         <DoorUse />
         <Text color={"#ffff00"} rotation={[0,1.5,0]} position={[-.5, placement + 1, 0.1]} fontSize={.1}>Welcome to my room!</Text>
+        <Text color={"blue"} rotation={[0,1.4,0]} position={[.45,placement+  .2, -.05]} fontSize={.07}>Projects</Text>
         <Text color={"#ffff00"} position={[.25, placement + 1, -.5]} fontSize={.1}>You can interect with objects</Text>
         <Text color={"#ffff00"} position={[.25,placement + .85, -.5]} fontSize={.1}>to learn about me :)</Text>
         <Text color={"red"} position={[.9, placement + .45, -.5]} fontSize={.05}>*Don't open closet!*</Text>
