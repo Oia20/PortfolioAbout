@@ -136,16 +136,24 @@ export default function Scene() {
   function Easel() {
     const gltf = useLoader(GLTFLoader, 'Easel.glb');
     const group = useRef();
+    const [isHovered, setIsHovered] = useState(false);
   
     // Handle click event
     const handleClick = () => {
       setArt(true)
       setPlacement(5)
     };
+    const handlePointerOver = () => {
+      setIsHovered(true); 
+    };
+  
+    const handlePointerOut = () => {
+      setIsHovered(false);
+    };
   
     return (
-      <group ref={group} onClick={handleClick}>
-        {gltf.scene && <primitive object={gltf.scene} />}
+      <group ref={group} onClick={handleClick} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
+        {gltf.scene && <primitive object={gltf.scene} scale={isHovered ? [0.21, 0.21, 0.21] : [0.2, 0.2, 0.2]} />}
       </group>
     );
   }
@@ -153,7 +161,7 @@ export default function Scene() {
   function EaselUse(props) {
     return (
       <group>
-        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+        <mesh position={[0, placement, 0]} castShadow receiveShadow>
           <Easel />
         </mesh>
       </group>
@@ -194,16 +202,23 @@ export default function Scene() {
   function Books() {
     const gltf = useLoader(GLTFLoader, 'Books.glb');
     const group = useRef();
+    const [isHovered, setIsHovered] = useState(false);
   
     // Handle click event
     const handleClick = () => {
       setBooks(true)
       setPlacement(5)
     };
+    const handlePointerOver = () => {
+      setIsHovered(true); 
+    };
   
+    const handlePointerOut = () => {
+      setIsHovered(false);
+    };
     return (
-      <group ref={group} onClick={handleClick}>
-        {gltf.scene && <primitive object={gltf.scene} />}
+      <group ref={group} onClick={handleClick} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
+        {gltf.scene && <primitive object={gltf.scene} scale={isHovered ? [0.21, 0.21, 0.21] : [0.2, 0.2, 0.2]} />}
       </group>
     );
   }
@@ -211,7 +226,7 @@ export default function Scene() {
   function BooksUse(props) {
     return (
       <group>
-        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+        <mesh position={[0, placement, 0]} castShadow receiveShadow>
           <Books />
         </mesh>
       </group>
@@ -247,16 +262,23 @@ export default function Scene() {
   function Golf() {
     const gltf = useLoader(GLTFLoader, 'Golf.glb');
     const group = useRef();
+    const [isHovered, setIsHovered] = useState(false);
   
     // Handle click event
     const handleClick = () => {
       setGolf(true)
       setPlacement(5)
     };
+    const handlePointerOver = () => {
+      setIsHovered(true); 
+    };
   
+    const handlePointerOut = () => {
+      setIsHovered(false);
+    };
     return (
-      <group ref={group} onClick={handleClick}>
-        {gltf.scene && <primitive object={gltf.scene} />}
+      <group ref={group} onClick={handleClick} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
+        {gltf.scene && <primitive object={gltf.scene} scale={isHovered ? [0.21, 0.21, 0.21] : [0.2, 0.2, 0.2]} />}
       </group>
     );
   }
@@ -264,7 +286,7 @@ export default function Scene() {
   function GolfUse(props) {
     return (
       <group>
-        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+        <mesh position={[0, placement, 0]} castShadow receiveShadow>
           <Golf />
         </mesh>
       </group>
@@ -275,6 +297,7 @@ export default function Scene() {
   function Chess() {
     const gltf = useLoader(GLTFLoader, 'Chess.glb');
     const group = useRef();
+    const [isHovered, setIsHovered] = useState(false);
   
     // Handle click event
     const handleClick = () => {
@@ -282,10 +305,16 @@ export default function Scene() {
       setChess(true)
       setPlacement(5)
     };
+    const handlePointerOver = () => {
+      setIsHovered(true); 
+    };
   
+    const handlePointerOut = () => {
+      setIsHovered(false);
+    };
     return (
-      <group ref={group} onClick={handleClick}>
-        {gltf.scene && <primitive object={gltf.scene} />}
+      <group ref={group} onClick={handleClick} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
+        {gltf.scene && <primitive object={gltf.scene} scale={isHovered ? [0.21, 0.21, 0.21] : [0.2, 0.2, 0.2]} />}
       </group>
     );
   }
@@ -293,7 +322,7 @@ export default function Scene() {
   function ChessUse(props) {
     return (
       <group>
-        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+        <mesh position={[0, placement, 0]} castShadow receiveShadow>
           <Chess />
         </mesh>
       </group>
@@ -302,16 +331,23 @@ export default function Scene() {
   function Rs() {
     const gltf = useLoader(GLTFLoader, 'RsCom.glb');
     const group = useRef();
+    const [isHovered, setIsHovered] = useState(false);
   
     // Handle click event
     const handleClick = () => {
       setRs(true)
       setPlacement(5)
     };
+    const handlePointerOver = () => {
+      setIsHovered(true); 
+    };
   
+    const handlePointerOut = () => {
+      setIsHovered(false);
+    };
     return (
-      <group ref={group} onClick={handleClick}>
-        {gltf.scene && <primitive object={gltf.scene} />}
+      <group ref={group} onClick={handleClick} onPointerOver={handlePointerOver} onPointerOut={handlePointerOut}>
+        {gltf.scene && <primitive object={gltf.scene} scale={isHovered ? [0.21, 0.21, 0.21] : [0.2, 0.2, 0.2]} />}
       </group>
     );
   }
@@ -319,7 +355,7 @@ export default function Scene() {
   function RsUse(props) {
     return (
       <group>
-        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
+        <mesh position={[0, placement, 0]} castShadow receiveShadow>
           <Rs />
         </mesh>
       </group>
