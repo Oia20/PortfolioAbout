@@ -41,62 +41,6 @@ export default function Scene() {
     );
   }
 
-  function Skel() {
-    const gltf = useLoader(GLTFLoader, 'skel.glb');
-    const group = useRef();
-  
-    // Handle click event
-    const handleClick = () => {
-      console.log("clicked Room")
-      setPlacement(0)
-      setSkel(10)
-    };
-  
-    return (
-      <group ref={group} onClick={handleClick}>
-        {gltf.scene && <primitive object={gltf.scene} />}
-      </group>
-    );
-  }
-  
-  function SkelUse(props) {
-    return (
-      <group>
-        <mesh rotation={[0, 1, 0]} position={[0, skel, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
-          <Skel />
-          <Text color={"red"} rotation={[0,-.54,0]} position={[-.5, 1, 0.1]} fontSize={.2}>Shoot you found my skeleton... click him to return...</Text>
-
-        </mesh>
-      </group>
-    );
-  }
-  
-  function Door() {
-    const gltf = useLoader(GLTFLoader, 'door.glb');
-    const group = useRef();
-  
-    // Handle click event
-    const handleClick = () => {
-      setPlacement(5)
-      setSkel(0)
-    };
-  
-    return (
-      <group ref={group} onClick={handleClick}>
-        {gltf.scene && <primitive object={gltf.scene} />}
-      </group>
-    );
-  }
-  
-  function DoorUse(props) {
-    return (
-      <group>
-        <mesh position={[0, placement, 0]} castShadow receiveShadow scale={[.2,.2,.2]}>
-          <Door />
-        </mesh>
-      </group>
-    );
-  }
   
   function Easel() {
     const gltf = useLoader(GLTFLoader, 'Easel.glb');
@@ -434,10 +378,38 @@ export default function Scene() {
   function Loader() {
     const { progress } = useProgress();
     return (
-      <Html center>
-        <h1>{Math.ceil(progress)} % loaded</h1>
-      </Html>
+      <Content />
+
     );
+  }
+  function Dodecahedron({ time, ...props }) {
+    const { progress } = useProgress();
+    return (
+      <mesh {...props}>
+        <dodecahedronGeometry />
+        <meshStandardMaterial roughness={0.75} emissive="#404057" />
+        <Html distanceFactor={5}>
+          <div class="content">
+          <h1>{Math.ceil(progress)} % loaded, painting the walls.</h1>
+          </div>
+        </Html>
+      </mesh>
+    )
+  }
+  
+  function Content() {
+    const ref = useRef()
+    useFrame(() => (ref.current.rotation.x = ref.current.rotation.y = ref.current.rotation.z += 0.005))
+    return (
+      <group ref={ref}>
+        <Dodecahedron position={[-2, 0, 0]} />
+        <Dodecahedron position={[0, -2, -3]} />
+        <Dodecahedron position={[2, 0, 0]} />
+        <pointLight color="indianred" />
+    <pointLight position={[10, 10, -10]} color="orange" />
+    <pointLight position={[-10, -10, 10]} color="lightblue" />
+      </group>
+    )
   }
   function Chair() {
     const gltf = useLoader(GLTFLoader, 'chair.glb');
@@ -528,14 +500,11 @@ export default function Scene() {
         <EaselUse />
         <RsUse />
         <ChairUse />
-        <SkelUse />
         <ConUse />
-        <DoorUse />
         <Text color={"#ffff00"} rotation={[0,1.5,0]} position={[-.5, placement + 1, 0.1]} fontSize={.1}>Welcome to my room!</Text>
         <Text color={"blue"} rotation={[0,1.4,0]} position={[.45,placement+  .2, -.05]} fontSize={.07}>Projects</Text>
         <Text color={"#ffff00"} position={[.25, placement + 1, -.5]} fontSize={.1}>You can interect with objects</Text>
         <Text color={"#ffff00"} position={[.25,placement + .85, -.5]} fontSize={.1}>to learn about me :)</Text>
-        <Text color={"red"} position={[.9, placement + .45, -.5]} fontSize={.05}>*Don't open closet!*</Text>
 
         <BooksUse />
         <GolfUse />
