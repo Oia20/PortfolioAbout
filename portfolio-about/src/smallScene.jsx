@@ -417,7 +417,7 @@ export default function Scene() {
   
     // Handle click event
     const handleClick = () => {
-      window.open("https://oia20.github.io/Projects/", "_blank")
+      window.open("https://jacob.dement.dev")
     };
   
     return (
