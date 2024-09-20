@@ -160,7 +160,7 @@ export default function Scene() {
   
     // Handle click event
     const handleClick = () => {
-      window.open("https://oia20.github.io/personalPortfolio/", "_blank")
+      window.open("https://dement.dev")
     };
   
     return (
