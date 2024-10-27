@@ -145,7 +145,7 @@ export default function Scene() {
   
     // Handle click event
     const handleClick = () => {
-      window.open("https://oia20.github.io/simpleContact/", "_Blank")
+      window.open("https://jacob.dement.dev", "_Blank")
     };
   
     return (
